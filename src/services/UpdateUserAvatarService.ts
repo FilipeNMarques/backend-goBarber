@@ -1,6 +1,8 @@
 import path from 'path';
 import fs from 'fs';
 import { getRepository } from 'typeorm';
+
+import AppError from '../errors/AppError';
 import User from '../models/User';
 import uploadConfig from '../config/upload';
 
@@ -14,7 +16,10 @@ class UpdateUserAvatarService {
     const user = await userRepository.findOne(user_id);
 
     if (!user) {
-      throw new Error('Only authenticated users can be edit informations');
+      throw new AppError(
+        'Only authenticated users can be edit informations',
+        401,
+      );
     }
 
     if (user.avatar) {
