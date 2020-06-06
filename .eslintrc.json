@@ -20,6 +20,7 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules":{
+    "no-useless-constructor":"off",
     "class-methods-use-this": "off",
     "prettier/prettier": "error",
       "@typescript-eslint/no-unused-vars": ["error", {
@@ -32,7 +33,8 @@
       {
         "ts": "never"
       }
-    ]
+    ],
+    "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "always" }]
   },
   "settings": {
     "import/resolver": {
