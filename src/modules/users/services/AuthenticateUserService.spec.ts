@@ -33,4 +33,49 @@ describe('Authenticate User', () => {
     expect(response).toHaveProperty('token');
     expect(response.user).toBe(user);
   });
+
+  it('should not be able to authenticate with nonexistent user', async () => {
+    const fakeUsersRepository = new FakeUsersRepository();
+    const fakeHashProvider = new FakeHashProvider();
+
+    const authenticateUser = new AuthenticateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+
+    expect(
+      authenticateUser.execute({
+        email: 'lano@spicess.com',
+        password: 'xablau',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to authenticate with a wrong password', async () => {
+    const fakeUsersRepository = new FakeUsersRepository();
+    const fakeHashProvider = new FakeHashProvider();
+
+    const createUser = new CreateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+
+    const authenticateUser = new AuthenticateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+
+    await createUser.execute({
+      name: 'Fulanim da Silva',
+      email: 'lano@spicess.com',
+      password: 'xablau',
+    });
+
+    expect(
+      authenticateUser.execute({
+        email: 'lano@spicess.com',
+        password: 'xablau1',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
