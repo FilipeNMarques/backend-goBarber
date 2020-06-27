@@ -5,7 +5,7 @@ import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/IUsersRpository';
-import IHashprovider from '@modules/users/providers/models/IHashProvider';
+import IHashprovider from '@modules/users/providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
   email: string;

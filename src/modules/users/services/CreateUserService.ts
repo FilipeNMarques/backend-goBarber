@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/IUsersRpository';
-import IHashProvider from '@modules/users/providers/models/IHashProvider';
+import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
   name: string;
@@ -26,7 +26,7 @@ class CreateUserService {
       throw new AppError('Email address already used');
     }
 
-    const hashedPassword = await this.hashProvider.generatehash(password);
+    const hashedPassword = await this.hashProvider.generateHash(password);
     const user = await this.usersRepository.create({
       name,
       email,

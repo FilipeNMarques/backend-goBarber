@@ -1,7 +1,7 @@
-import IHashProvider from '@modules/users/providers/models/IHashProvider';
+import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 
 class FakeHashProvider implements IHashProvider {
-  public async generatehash(payload: string): Promise<string> {
+  public async generateHash(payload: string): Promise<string> {
     return payload;
   }
 

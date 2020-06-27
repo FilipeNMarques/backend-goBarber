@@ -1,6 +1,6 @@
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepositort';
 import AppError from '@shared/errors/AppError';
-import FakeHashProvider from '@modules/users/providers/fakes/FakeHashProvider';
+import FakeHashProvider from '@modules/users/providers/HashProvider/fakes/FakeHashProvider';
 import CreateUserService from './CreateUserService';
 
 describe('Create User', () => {
@@ -35,7 +35,7 @@ describe('Create User', () => {
       password: 'xablau',
     });
 
-    expect(
+    await expect(
       createUser.execute({
         name: 'Fulanim',
         email: 'lano@spicess.com',
