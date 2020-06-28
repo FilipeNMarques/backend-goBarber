@@ -7,7 +7,7 @@ const passwordRouter = Router();
 const forgotPasswordController = new ForgotPasswordController();
 const resetPasswordController = new ResetPasswordController();
 
-passwordRouter.post('/forgtot', forgotPasswordController.create);
+passwordRouter.post('/forgot', forgotPasswordController.create);
 
 passwordRouter.post('/reset', resetPasswordController.create);
 
