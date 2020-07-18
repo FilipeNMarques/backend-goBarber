@@ -48,8 +48,6 @@ describe('CreateAppointment', () => {
   });
 
   it('should not be able to create an appointment on a paste date', async () => {
-    '';
-
     jest.spyOn(Date, 'now').mockImplementationOnce(() => {
       return new Date(2020, 4, 10, 12).getTime();
     });
