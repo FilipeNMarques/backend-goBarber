@@ -1,5 +1,5 @@
 Arguments: 
-  /home/filipen/.nvm/versions/node/v12.18.0/bin/node /usr/share/yarn/bin/yarn.js add -D @types/hapi__joi
+  /home/filipen/.nvm/versions/node/v12.18.0/bin/node /usr/share/yarn/bin/yarn.js add calss-transformer
 
 PATH: 
   /home/filipen/.zinit/polaris/sbin:/home/filipen/.zinit/polaris/bin:/home/filipen/.zinit/polaris/usr/sbin:/home/filipen/.zinit/polaris/usr/bin:/home/filipen/.nvm/versions/node/v12.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/filipen/Android/Sdk/emulator:/home/filipen/Android/Sdk/tools:/home/filipen/Android/Sdk/tools/bin:/home/filipen/Android/Sdk/platform-tools:/home/filipen/Android/Sdk/emulator:/home/filipen/Android/Sdk/tools:/home/filipen/Android/Sdk/tools/bin:/home/filipen/Android/Sdk/platform-tools
@@ -14,8 +14,17 @@ Platform:
   linux x64
 
 Trace: 
-  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
-      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+  Error: https://registry.yarnpkg.com/calss-transformer: Not found
+      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66987:18)
+      at Request.self.callback (/usr/share/yarn/lib/cli.js:140748:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141720:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1221:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
@@ -37,6 +46,7 @@ npm manifest:
       "celebrate": "^12.1.2",
       "cors": "^2.8.5",
       "date-fns": "^2.12.0",
+      "dotenv": "^8.2.0",
       "express": "^4.17.1",
       "express-async-errors": "^3.1.1",
       "handlebars": "^4.7.6",
@@ -54,6 +64,7 @@ npm manifest:
       "@types/bcryptjs": "^2.4.2",
       "@types/cors": "^2.8.6",
       "@types/express": "^4.17.6",
+      "@types/hapi__joi": "^17.1.4",
       "@types/jest": "^26.0.0",
       "@types/jsonwebtoken": "^8.3.9",
       "@types/mongodb": "^3.5.25",
@@ -723,7 +734,7 @@ Lockfile:
     dependencies:
       "@types/node" "*"
   
-  "@types/hapi__joi@17.x.x":
+  "@types/hapi__joi@17.x.x", "@types/hapi__joi@^17.1.4":
     version "17.1.4"
     resolved "https://registry.yarnpkg.com/@types/hapi__joi/-/hapi__joi-17.1.4.tgz#e46cd1bd81d25cd45247d652dadb3666514d807c"
     integrity sha512-gqY3TeTyZvnyNhM02HgyCIoGIWsTFMnuzMfnD8evTsr1KIfueGJaz+QC77j+dFvhZ5cJArUNjDRHUjPxNohzGA==
@@ -1845,6 +1856,11 @@ Lockfile:
     version "6.2.0"
     resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
     integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
+  
+  dotenv@^8.2.0:
+    version "8.2.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+    integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
   
   dynamic-dedupe@^0.3.0:
     version "0.3.0"
