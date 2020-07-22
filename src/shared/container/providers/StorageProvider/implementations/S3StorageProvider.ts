@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import aws, { S3 } from 'aws-sdk';
+import mime from 'mime';
 import UploadConfig from '@config/upload';
 import IStorageProvider from '../models/IStorageProvider';
 
@@ -15,33 +16,36 @@ class DiskStorageProvider implements IStorageProvider {
 
   public async saveFile(file: string): Promise<string> {
     const originalPath = path.resolve(UploadConfig.tmpFolder, file);
+    const ContentType = mime.getType(originalPath);
 
-    const fileContent = await fs.promises.readFile(originalPath, {
-      encoding: 'utf-8',
-    });
+    const fileContent = await fs.promises.readFile(originalPath);
+
+    if (!ContentType) {
+      throw new Error('File not found');
+    }
 
     await this.client
       .putObject({
-        Bucket: 'spicess-images',
+        Bucket: UploadConfig.config.aws.bucket,
         Key: file,
         ACL: 'public-read',
         Body: fileContent,
+        ContentType,
       })
       .promise();
+
+    await fs.promises.unlink(originalPath);
 
     return file;
   }
 
   public async deleteFile(file: string): Promise<void> {
-    const filePath = path.resolve(UploadConfig.uploadsFolder, file);
-
-    try {
-      await fs.promises.stat(filePath);
-    } catch {
-      return;
-    }
-
-    await fs.promises.unlink(filePath);
+    await this.client
+      .deleteObject({
+        Bucket: UploadConfig.config.aws.bucket,
+        Key: file,
+      })
+      .promise();
   }
 }
 
